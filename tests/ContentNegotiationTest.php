@@ -9,7 +9,7 @@
 namespace BudgetDumpster\Tests\Middleware;
 
 use PHPUnit\Framework\TestCase;
-use BudgetDumpster\Middleware\ContentNegotiation;
+use BudgetDumpster\Middleware\ContentNegotiationHalJson;
 use BudgetDumpster\Tests\Helpers\ContentNegotiationCallable;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -88,7 +88,7 @@ class ContentNegotiationTest extends TestCase
             ->with($this->request, $this->response)
             ->will($this->returnValue($this->response));
 
-        $middleware = new ContentNegotiation();
+        $middleware = new ContentNegotiationHalJson();
         $response = $middleware->__invoke($this->request, $this->response, $this->callableMock);
         $this->assertInstanceOf('\Slim\Http\Response', $response);
     }
@@ -116,7 +116,7 @@ class ContentNegotiationTest extends TestCase
         $this->callableMock->expects($this->never())
             ->method('__invoke');
 
-        $middleware = new ContentNegotiation();
+        $middleware = new ContentNegotiationHalJson();
         $response = $middleware->__invoke($this->request, $this->response, $this->callableMock);
     }
 
@@ -148,7 +148,7 @@ class ContentNegotiationTest extends TestCase
             ->with(415)
             ->will($this->returnValue($this->response));
 
-        $middleware = new ContentNegotiation();
+        $middleware = new ContentNegotiationHalJson();
         $response = $middleware->__invoke($this->request, $this->response, $this->callableMock);
     }
 }

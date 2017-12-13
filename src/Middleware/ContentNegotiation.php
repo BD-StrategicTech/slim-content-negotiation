@@ -10,13 +10,8 @@ namespace BudgetDumpster\Middleware;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class ContentNegotiation
+abstract class ContentNegotiation
 {
-    /**
-     * @var Array
-     */
-    private $acceptedContentTypes = ['application/json', 'application/hal+json'];
-
     /**
      * Content Negotiation Invokable class
      *
